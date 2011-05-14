@@ -37,9 +37,9 @@
 	  this.HexArray[this.offx][this.offy+2].val = 1;
 
 	  this.HexArray[this.offx+1][this.offy+1].val = 1;
-	  //this.HexArray[this.offx+1][this.offy+1].audio = new Sine(document.hs.ha.audiolet, 440);
+	  this.HexArray[this.offx+1][this.offy+1].audio = new Sine(document.hs.ha.audiolet, 440);
 	  
-	  // this.HexArray[this.offx+1][this.offy+1].audio.connect(document.hs.ha.audiolet.output);
+	  this.HexArray[this.offx+1][this.offy+1].audio.connect(document.hs.ha.audiolet.output);
 	  // this.HexArray[this.offx+1][this.offy+1].audio.remove();
 //	  document.hs.ha.audiolet.output.disconnect(this.HexArray[this.offx+1][this.offy+1].audio);
 	  return this;

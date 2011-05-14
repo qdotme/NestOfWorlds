@@ -46,6 +46,8 @@
 
       document.hs.audio = new Sine(document.hs.ha.audiolet, 440);
       document.hs.audio.connect(document.hs.ha.audiolet.output);
+
+      document.hs.audio.remove();
 //      document.hs.ha.audiolet.output.disconnect(document.hs.audio);
 //      document.hs.audio.disconnect(document.hs.ha.audiolet.output);
     });

@@ -1,5 +1,7 @@
       function HexLife() 
       {
+	var self = this;
+	
 	this.dimx = 34;
 	this.dimy = Math.floor(this.dimx/2);
 	this.offx = Math.floor(this.dimx/2);
@@ -137,7 +139,20 @@
 	  this.HexArray[this.offx+2][this.offy-1].val = 1;
 	}
 	
-	this.seed = this.glider;
+	this.jsonurl = "foo.json";
+	
+	this.json = function() {
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
+	  $.getJSON(self.jsonurl, function(json) {
+	    $.each(json, function(i, item){
+	      self.HexArray[item.x][item.y].x = item.x;
+	      self.HexArray[item.x][item.y].y = item.y;
+	      self.HexArray[item.x][item.y].val = item.val;
+	    });
+	  });
+	}
+	
+	this.seed = this.json;
 	/*
 	this.seed = function() {
 	}

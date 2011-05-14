@@ -19,6 +19,7 @@ body {
     background: black linear-gradient(-90deg, #333, black) no-repeat;
     color: #ddd;
     font-size: 28px;
+    text-align: center;
 }
 
 /** the header **/
@@ -27,6 +28,7 @@ header {
     height: 110px;
     background: url(metal_bg.jpg);
     box-shadow: 1px 1px 0px #bf0;
+    text-align: left;
 }
 
 header h1 {
@@ -109,14 +111,13 @@ button.inactive {
 /** control panel **/
 
 #ctrl-panel {
-    float: right;
-    width: 300px;
+    width: 400px;
+    height: 54px;
     border: 1px solid #bf0;
-    border-right: 0;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 10px;
     margin-top: 10px;
     background: url(metal_bg.jpg);
+    margin: auto;
 }
 
 #ctrl-panel button {
@@ -143,14 +144,30 @@ button.inactive {
 #world {
     text-align: center;
     padding: 10px;
+    margin-left: 150px;
 }
 
 canvas {
-  background:white;
-  border-bottom-left-radius:3em;
-  border-top-right-radius:3em;
-  border-right:solid 1em #BBFF00;
-  border-left:solid 1em #BBFF00;
-  margin: auto;
+    background:white;
+    border-bottom-left-radius:3em;
+    border-top-right-radius:3em;
+    border-right:solid 1em #BBFF00;
+    border-left:solid 1em #BBFF00;
+    margin: auto;
 }
 
+/** popups **/
+
+.popup {
+    display: none;
+    width: 500px;
+    position: absolute;
+    top: 100px;
+    background: url(metal_bg.jpg);
+    border: 5px solid #bf0;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 10px;
+    margin: auto;
+    text-align: left;
+}

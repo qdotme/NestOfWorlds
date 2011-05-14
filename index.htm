@@ -76,37 +76,48 @@
             <button id="bt-howto">Howto</button>
             <button id="bt-credits">Credits</button>
             <button id="bt-contact">Contact</button>
-          </div>
-    
-          <div id="ctrl-panel">
-            <span class="row">
-              <button id="bt-about" class="top-row">Save</button>
-              <button id="bt-load" class="top-row">Load</button>
-            </span>
-            <span class="row">
-              <button id="bt-name">Name</button>
-              <button id="bt-user">User</button>
-            </span>
-            <span class="row">
-              <button id="bt-clear">Clear</button>
-              <button id="bt-random">Random</button>
-            </span>
-            <div class="row small-buttons with-spacer">
-              <button id="bt-step">Step</button>
-              <button id="bt-stop">Stop</button>
-              <button id="bt-play">Play</button>
-            </div>
-            <div class="row small-buttons">
-              <button id="bt-edit">Edit</button>
-              <button id="bt-redraw">Redraw</button>
-              <button id="bt-seed">Seed</button>
-            </div>
+            <button id="bt-about" class="top-row with-spacer">Save</button>
+            <button id="bt-load" class="top-row">Load</button>
           </div>
     
           <div id="world">
             <p>Note: audio is available only on Firefox 4.</p>
             <canvas id="hexcanvas" width="300" height="300"></canvas>
+            <div id="ctrl-panel">
+              <div class="row small-buttons with-spacer">
+                <button id="bt-clear">Clear</button>
+                <button id="bt-step">Step</button>
+                <button id="bt-stop">Stop</button>
+                <button id="bt-play">Play</button>
+              </div>
+              <div class="row small-buttons">
+                <button id="bt-random">Random</button>
+                <button id="bt-edit">Edit</button>
+                <button id="bt-redraw">Redraw</button>
+                <button id="bt-seed">Seed</button>
+              </div>
+            </div>
+      
           </div>
+        </div>
+        <div id="popup-about" class="popup">
+          <h2>About</h2>
+  
+          <p>Nest of Worlds is an interactive environment for designing,
+          playing and sharing musical compositions („worlds”) based upon
+          logic of „Conway's game of Life” - cellular automata
+          simulation of a colony of living cells.</p>
+  
+          <p>You can set up your own pattern (initial cell colony) on
+          the hex-shaped grid and run them through the life span,
+          listening to their screams and moans, however harmonious they
+          may appear.</p>
+  
+          <p>You can save parameters of the successful experiments for
+          others to experience, load someone elses work to enjoy or
+          refine, or simply chose random pattern and watch it live till
+          it dies.</p>
+  
         </div>
       </div> <!--! end of #container -->
 </body>

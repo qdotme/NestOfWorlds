@@ -65,8 +65,8 @@ function HexNode(life, x, y)
 	      this.audio.remove();
 	      // document.hs.ha.audiolet.output.disconnect(this.audio);
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
-	    if ((this.audio != undefined) && (this.val == 1)) {
-	      this.audio = new Sine(document.hs.ha.audiolet, 440);
+	    if ((this.audiofreq != undefined) && (this.val == 1)) {
+	      this.audio = new Sine(document.hs.ha.audiolet, this.audiofreq);
 	      this.audio.connect(document.hs.ha.audiolet.output);
 	    }
 

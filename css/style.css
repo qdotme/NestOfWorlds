@@ -14,9 +14,9 @@
 }
 
 body {
-    background: black -moz-linear-gradient(-90deg, #333, black) no-repeat;
-    background: black -webkit-linear-gradient(-90deg, #333, black) no-repeat;
-    background: black linear-gradient(-90deg, #333, black) no-repeat;
+    background: #111 -moz-linear-gradient(-90deg, #333, #111) no-repeat;
+    background: #111 -webkit-linear-gradient(-90deg, #333, #111) no-repeat;
+    background: #111 linear-gradient(-90deg, #333, #111) no-repeat;
     color: #ddd;
     font-size: 28px;
     text-align: center;
@@ -144,12 +144,11 @@ button.inactive {
 }
 
 canvas {
-    background:white;
-    border-bottom-left-radius:10px;
-    border-top-right-radius:10px;
-    border-right:solid 1em #BBFF00;
-    border-left:solid 1em #BBFF00;
     margin: auto;
+    border: 1px solid #bf0;
+    border-radius: 10px;
+    padding: 10px;
+    background: url(metal_bg.jpg);
 }
 
 /** popups **/

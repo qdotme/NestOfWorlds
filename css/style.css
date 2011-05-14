@@ -49,11 +49,11 @@ header #logo {
     width: 64px;
     height: 64px;
     position: absolute;
-    left: 10px;
-    top: 10px;
-    border: 1px solid #bbff00;
+    left: 45px;
+    top: 20px;
     padding: 10px;
     margin-right: 16px;
+    background: url(hex-glider.png) no-repeat;
 }
 
 /** main area **/

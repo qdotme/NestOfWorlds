@@ -107,7 +107,7 @@
 	  
 	}
 
-	this.seed = function() {
+	this.coreseed = function() {
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
 	  this.HexArray[this.offx][this.offy].newval = 1;
@@ -135,7 +135,7 @@
 	  this.HexArray[this.offx+2][this.offy-1].val = 1;
 	}
 	
-	this.seed = this.glider;
+	this.seed = this.coreseed;
 	/*
 	this.seed = function() {
 	}

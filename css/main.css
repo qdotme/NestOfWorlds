@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Orbitron-Bold'), url('http://themes.googleusercontent.com/font?kit=Y82YH_MJJWnsH2yUA5AuYZ0EAVxt0G0biEntp43Qt6E') format('truetype');
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Orbitron-Light'), local('Orbitron-Regular'), url('http://themes.googleusercontent.com/font?kit=lVErvynhvxLufD6jW6vDo_esZW2xOQ-xsNqO47m55DA') format('truetype');
+}
+
+body {
+  padding-top:3em;
+  text-align:center;
+  color:white;
+  font-family:Orbitron, Arial;
+
+  background:#000 -moz-linear-gradient(-90deg, #333, #000) no-repeat;
+  background:#000 -webkit-linear-gradient(-90deg, #333, #000) no-repeat;
+  background:#000 linear-gradient(-90deg, #333, #000) no-repeat;
+}
+
+h1 {
+  text-shadow:1px 1px #BBFF00;
+}
+
+h2 {
+  color:#BBFF00;
+  text-shadow:1px 1px white;
+}
+
+canvas {
+  background:white;
+  border-bottom-left-radius:3em;
+  border-top-right-radius:3em;
+  border-right:solid 1em #BBFF00;
+  border-left:solid 1em #BBFF00;
+}
+
+a {
+  background:#BBFF00;
+  color:black;
+  display:inline-block;
+  padding:0.2em 1em 0.1em 1em;
+  margin:0.1em;
+  font-weight:bold;
+  text-decoration:none;
+  font-size:75%;
+  border-bottom-left-radius:1em;
+  border-top-right-radius:1em;
+  border-right:solid 0.3em #fff;
+  border-left:solid 0.3em #fff;
+}
+
+a:hover {
+  background:white;
+  color:black;
+  display:inline-block;
+  padding:0.2em 1em 0.1em 1em;
+  margin:0.1em;
+  font-weight:bold;
+  text-decoration:none;
+  font-size:75%;
+  border-bottom-left-radius:1em;
+  border-top-right-radius:1em;
+  border-right:solid 0.3em #BBFF00;
+  border-left:solid 0.3em #BBFF00;
+}

@@ -8,6 +8,8 @@
 
 	this.step = function() {
 	  this.hl.update();
+	  if (this.hl.count() == 0) 
+	    this.hl.seed();
 	  this.hv.redraw(this.hl);
 	}
 

@@ -24,9 +24,16 @@
 	this.foreach( function(hl, x, y) { hl.HexArray[x][y] = new HexNode(hl, x, y) });
 
 	this.get = function(x ,y) {
-	  return this.HexArray[x+this.offx][y+this.offy];
+	  if (x > this.dimx) 
+	    x -= this.dimx;
+	  return this.HexArray[x][y];
 	}
 
+	this.count = function () { 
+	  var count = 0;
+	  this.foreach( function(hl, x, y) { count += hl.HexArray[x][y].val; } );
+	  return count;
+	}
 
 	this.sound = function() {
 	  this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = x*50+y; });
@@ -62,7 +69,8 @@
 	}
 
 	this.update = function() {
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].update() } );
+	  var count=0;
+	  this.foreach( function(hl, x, y) { count+=hl.HexArray[x][y].update() } );
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
 	  return this;
 	}

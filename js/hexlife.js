@@ -7,7 +7,7 @@
 
 	this.HexArray = new Array(this.dimx);
 	
-	
+	this.trigger = new Array();
 
 	for (var i=0; i< this.dimx; i++) {
 	  this.HexArray[i] = new Array(this.dimy);
@@ -40,6 +40,8 @@
 	  this.foreach( function(hl, x, y) { count += hl.HexArray[x][y].val; } );
 	  return count;
 	}
+
+	this.octaves = [261.63, 293.66, 329.63, 392, 440, 523.25, 587.33,  659.26,  783.99,  880, 1046.5, 1174.66, 1318.51, 1567.98, 1760]
 
 	this.sound = function() {
 	  // this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = 200 + Math.floor(Math.random()*2000); });
@@ -90,7 +92,7 @@
 	  
 	    
 	  for (var x=0; x<this.dimx; x++) {
-	    for (var y=1; y<this.dimy; y++) {
+	    for (var y=1; y<this.dimy; y+=1) {
 	      this.HexArray[x][y].audiofreq = this.HexArray[x][y-1].audiofreq;
 	    }
 	  }
@@ -143,6 +145,7 @@
 	this.update = function() {
 	  var count=0;
 	  this.foreach( function(hl, x, y) { count+=hl.HexArray[x][y].update() } );
+	  this.trigger = Array();
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
 	  return this;
 	}

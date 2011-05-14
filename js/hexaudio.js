@@ -34,5 +34,5 @@ this.remove.bind(this));
 
       function HexAudio() 
       {
-	this.audiolet = new Audiolet();
+	this.audiolet = new Audiolet(5512);
       }

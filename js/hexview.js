@@ -47,9 +47,11 @@
 	  
 	  console.log(rval);
 	  
+	  document.hs.hl.trigger = Array();
+	  
 	  if (document.hs.hl.HexArray[rval.x][rval.y].val == 1)
 	    document.hs.hl.HexArray[rval.x][rval.y].newval = 0;
-	  if (document.hs.hl.HexArray[rval.x][rval.y].val == 0)
+	  else if (document.hs.hl.HexArray[rval.x][rval.y].val == 0)
 	    document.hs.hl.HexArray[rval.x][rval.y].newval = 1;
 	  
 	  document.hs.hl.HexArray[rval.x][rval.y].swap();

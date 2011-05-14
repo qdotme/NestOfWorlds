@@ -69,12 +69,14 @@ function HexNode(life, x, y)
 	    this.val = this.newval;	
  
 	    if ((this.audio != undefined) && (this.val == 0)) {
+	      console.log("Removing");
 	      this.audio.remove();
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
 	      // document.hs.ha.audiolet.output.disconnect(this.audio);
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
 	    }
 	    if ((this.audiofreq != undefined) && (this.val == 1) && (this.life.trigger[this.audiofreq] == undefined)) {
+	      console.log("Triggering");
 	      this.life.trigger[this.audiofreq] =1;
 	      this.audio = new Synth(document.hs.ha.audiolet, this.audiofreq);
 	      this.audio.connect(document.hs.ha.audiolet.output);

@@ -20,7 +20,7 @@
 	  this.step();
 	  var end = new Date().getTime();
 	  console.log("Execution time: " + (end-start));
-	  this.timer = setTimeout("document.hs.play()", 200);
+	  this.timer = setTimeout("document.hs.play()", 750);
 	}
 
 	this.stop = function () {

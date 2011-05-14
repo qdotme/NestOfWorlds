@@ -137,7 +137,7 @@
 	  this.HexArray[this.offx+2][this.offy-1].val = 1;
 	}
 	
-	this.seed = this.coreseed;
+	this.seed = this.glider;
 	/*
 	this.seed = function() {
 	}

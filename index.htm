@@ -10,232 +10,43 @@
         -->
 
         <!-- Development -->
-        <script src="Audiolet/src/mootools/mootools-core-1.3-full-nocompat.js"></script>
+        <script type="text/javascript" src="Audiolet/src/mootools/mootools-core-1.3-full-nocompat.js"></script>
         <script src="Audiolet/src/audiolet/Audiolet.js"></script>
 
         <!-- Common -->
-        <script src="js/audiolet_app.js"></script>
+        <script src="js/hexnode.js"></script>
+        <script src="js/hexview.js"></script>
+	<script src="js/hexlife.js"></script>
+        <script src="js/hexaudio.js"></script>
+        <script src="js/hexsim.js"></script>
 <script type="application/javascript">
 
 
     window.addEvent("domready", function() {
-      function NearNeighbour(x, y) {
-	this.val = 1.0;
-	this.x = x; 
-	this.y = y;
-      }
-
-      function FarNeighbour(x, y) {
-	this.val = 0.3;
-	this.x = x; 
-	this.y = y;
-      }
-      
-  
-      var Neighbours = new Array();
-      Neighbours.push(new NearNeighbour(-1, 1));
-      Neighbours.push(new NearNeighbour(0, 1));
-      Neighbours.push(new NearNeighbour(1, 0));
-      Neighbours.push(new NearNeighbour(1, -1));
-      Neighbours.push(new NearNeighbour(0, -1));
-      Neighbours.push(new NearNeighbour(-1, 0));
-
-      Neighbours.push(new FarNeighbour(-1, 2));
-      Neighbours.push(new FarNeighbour(1, 1));
-      Neighbours.push(new FarNeighbour(2, -1));
-      Neighbours.push(new FarNeighbour(1, -2));
-      Neighbours.push(new FarNeighbour(-1, -1));
-      Neighbours.push(new FarNeighbour(-2, 1));
       
 
-      function HexNode(life, x, y)
-      {
-	this.life = life;
-	this.x = x;
-	this.y = y;
-	this.val = 0;
-	this.newval = 0;
-      
-	this.update = function() {
-	  var sum = 0;
-	  for (var i=0; i<Neighbours.length; i++) {
-	    if 
-	      ((this.life.HexArray[this.x+Neighbours[i].x] != undefined) && 
-	      (this.life.HexArray[this.x+Neighbours[i].x][this.y+Neighbours[i].y] != undefined) &&
-	      (this.life.HexArray[this.x+Neighbours[i].x][this.y+Neighbours[i].y].val == 1))
-	      sum += Neighbours[i].val;
-	  }
-
-//	  console.log (sum);
-
-	  this.newval = this.val;
-
-	  if ((this.val == 1) && (sum < 2.0))
-	    this.newval = 0;
-	  if ((this.val == 1) && (sum > 3.3))
-	    this.newval = 0;
-
-	  if ((this.val == 0) && (sum >=2.3) && (sum <= 2.9))
-	    this.newval = 1;
-	}
-	this.swap = function () {
-	  if (this.newval != this.val) {
-	    this.val = this.newval;	
- 
-	    if ((this.audio != undefined) && (this.val == 0))
-	      document.hs.ha.audiolet.output.disconnect(this.audio);
-	      // this.audio.disconnect(document.hs.ha.audiolet.output);
-	    if ((this.audio != undefined) && (this.val == 1))
-	      this.audio.connect(document.hs.ha.audiolet.output);
-
-	  }
-	}
-      }
-
-      function HexAudio() 
-      {
-	this.audiolet = new Audiolet();
-      }
 
     
 
-      function HexSim()
-      {
-	this.ha = new HexAudio();
-
-	this.hv = new HexView();
-	this.hl = new HexLife();
-
-
-	this.step = function() {
-	  this.hl.update();
-	  this.hv.redraw(this.hl);
-	}
-
-	this.play = function () {
-	  var start = new Date().getTime();
-	  this.step();
-	  var end = new Date().getTime();
-	  console.log("Execution time: " + (end-start));
-	  this.timer = setTimeout("document.hs.play()", 200);
-	}
-
-	this.stop = function () {
-	  clearTimeout(this.timer);
-	}
-      }
 
 
 
-      function HexView() 
-      {
-	this.canvas = document.getElementById("hexcanvas");
-	this.ctx = this.canvas.getContext("2d");
-
-	this.yx = Math.sqrt(3)/2;
-
-	this.coords = function(x, y) {
-	  var rval = new Object;
-
-	  rval.x = x + y/2;
-	  rval.y = y*this.yx;
-
-	  return rval;
-	}
-
-	this.drawpoint = function(ctx, x, y, r) {
-	  this.ctx.beginPath();
-	  this.ctx.arc(x, y, r, 0, Math.PI*2, true);
-	  this.ctx.closePath();
-	  this.ctx.fill();
-	}
-
-	this.redraw = function(life) {
-	  this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-	  var hv = this;
-
-	  var r = Math.min(this.ctx.canvas.width/(2*life.dimx*1.5), this.ctx.canvas.height/(2*life.dimy*this.yx));
-
-	  life.foreach( function(hl, x, y) { 
-	      var coords = hv.coords(x, y);
-	      if (hl.HexArray[x][y].val == 1)
-		hv.drawpoint(hv.ctx, r+coords.x * 2*r, r+coords.y * 2*r, r);
-	  });
-	}
-
-      }
 
 
-      function HexLife()
-      {
-	this.dimx = 45;
-	this.dimy = this.dimx;
-	this.offx = Math.floor(this.dimx/2);
-	this.offy = this.offx;
-
-	this.HexArray = new Array(this.dimx);
-	
-	
-
-	for (var i=0; i< this.dimx; i++) {
-	  this.HexArray[i] = new Array(this.dimy);
-	}
-
-	this.foreach = function(what) {
-	  for (var i=0; i< this.dimx; i++) {
-	    for (var j=0; j< this.dimy; j++) {
-	      what(this, i, j);
-	    }
-	  }
-	}
-
-	this.foreach( function(hl, x, y) { hl.HexArray[x][y] = new HexNode(hl, x, y) });
-
-	this.get = function(x ,y) {
-	  return this.HexArray[x+this.offx][y+this.offy];
-	}
-
-
-	this.seed = function() {
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
-	  this.HexArray[this.offx][this.offy].val = 1;
-	  this.HexArray[this.offx+1][this.offy].val = 1;
-	  this.HexArray[this.offx+2][this.offy].val = 1;
-	  this.HexArray[this.offx][this.offy+1].val = 1;
-	  this.HexArray[this.offx][this.offy+2].val = 1;
-
-	  this.HexArray[this.offx+1][this.offy+1].val = 1;
-	  this.HexArray[this.offx+1][this.offy+1].audio = new Sine(document.hs.ha.audiolet, 440);
-	  
-	  // this.HexArray[this.offx+1][this.offy+1].audio.connect(document.hs.ha.audiolet.output);
-	  // this.HexArray[this.offx+1][this.offy+1].audio.remove();
-//	  document.hs.ha.audiolet.output.disconnect(this.HexArray[this.offx+1][this.offy+1].audio);
-	  return this;
-	}
-
-	this.update = function() {
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].update() } );
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
-	  return this;
-	}
-
-
-
-      }
 
       document.hs = new HexSim();
 
       document.hs.audio = new Sine(document.hs.ha.audiolet, 440);
       document.hs.audio.connect(document.hs.ha.audiolet.output);
 //      document.hs.ha.audiolet.output.disconnect(document.hs.audio);
-      document.hs.audio.disconnect(document.hs.ha.audiolet.output);
+//      document.hs.audio.disconnect(document.hs.ha.audiolet.output);
     });
 </script>
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
       <p>
-      <canvas id="hexcanvas" width="500" height="500"></canvas>
+      <canvas id="hexcanvas" width="300" height="300"></canvas>
       </p>
       <a href="#" onClick="document.hs.hl.seed()"> Seed </a>
       <a href="#" onClick="document.hs.hv.redraw(document.hs.hl)"> Redraw </a>

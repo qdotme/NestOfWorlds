@@ -1,12 +1,11 @@
 var Nav = {
     init: function() {
-        $('button').click(function(evt) {Nav.handle_button(evt.target.id)});
+        $('button').click(function(evt) {Nav.handle_button(evt.target)});
         Nav.dim_unimplemented_buttons();
     },
 
     dim_unimplemented_buttons: function() {
         $('button').each(function(idx, button) {
-            console.log(Nav.get_handler(button.id));
             if (!Nav.get_handler(button.id)) {
                 console.log('no: ' + button.id);
                 button.addClass('inactive');
@@ -14,12 +13,12 @@ var Nav = {
         });
     },
 
-    handle_button: function(id) {
-        var handler = Nav.get_handler(id);
-        if (handler)
+    handle_button: function(button) {
+        var handler = Nav.get_handler(button.id);
+        if (handler) {
             handler();
-        else
-            alert(id + ': not implemented yet');
+        } else
+            alert(button.id + ': not implemented yet');
     },
 
     get_handler: function(id) {

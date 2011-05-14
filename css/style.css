@@ -24,21 +24,33 @@ body {
 /** the header **/
 
 header {
-    padding: 10px;
-    height: 84px;
+    height: 110px;
+    background: url(metal_bg.jpg);
+    box-shadow: 1px 1px 0px #bf0;
 }
 
 header h1 {
+    text-shadow: 1px 1px #BF0;
     font-size: 30px;
+    position: relative;
+    left: 150px;
+    top: 5px;
 }
-header p {
+header h2 {
+    color: #BF0;
     font-size: 20px;
+    position: relative;
+    left: 150px;
+    top: 5px;
+    padding: 0;
 }
 header #logo {
     font-size: 14px;
     width: 64px;
     height: 64px;
-    float: left;
+    position: absolute;
+    left: 10px;
+    top: 10px;
     border: 1px solid #bbff00;
     padding: 10px;
     margin-right: 16px;
@@ -47,19 +59,23 @@ header #logo {
 /** main area **/
 
 #main {
-    border-top: 1px solid #bbff00;
+/*    border-top: 1px solid #bbff00;*/
+}
+
+#main p {
+    margin: 10px;
+    font-size: 20px;
 }
 
 /** menus - common elements **/
 
 button {
     background: none;
-    border-top: none;
     color: #eee;
     width: 150px;
     margin: 0;
     border: none;
-    border-top: 1px solid #bbff00;
+/*    border-top: 1px solid #bbff00;*/
     padding: 2px;
 }
 
@@ -80,10 +96,11 @@ button.inactive {
 #nav-menu {
     float: left;
     width: 150px;
-    border: 1px solid #bbff00;
     padding: 0;
     border-bottom-right-radius: 10px;
     border-top: 0;
+    background: url(metal_bg.jpg);
+    box-shadow: 1px 1px 0px #bf0;
 }
 
 #nav-menu button {
@@ -94,15 +111,17 @@ button.inactive {
 #ctrl-panel {
     float: right;
     width: 300px;
-    border: 1px solid #bbff00;
+    border: 1px solid #bf0;
+    border-right: 0;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     margin-top: 10px;
+    background: url(metal_bg.jpg);
 }
 
 #ctrl-panel button {
     float: right;
-    border-right: 1px solid #bbff00;
+/*    border-right: 1px solid #bbff00;*/
 }
 
 #ctrl-panel .small-buttons button {

@@ -2,8 +2,8 @@
       {
 	this.dimx = 46;
 	this.dimy = Math.floor(this.dimx/2);
-	this.offx = Math.floor(this.dimx/4);
-	this.offy = Math.floor(this.dimy/4);
+	this.offx = Math.floor(this.dimx/2);
+	this.offy = Math.floor(this.dimy/2);
 
 	this.HexArray = new Array(this.dimx);
 	
@@ -24,8 +24,14 @@
 	this.foreach( function(hl, x, y) { hl.HexArray[x][y] = new HexNode(hl, x, y) });
 
 	this.get = function(x ,y) {
-	  if (x > this.dimx) 
+	  if (x >= this.dimx) {
 	    x -= this.dimx;
+	  }
+	  if (x < 0 ) {
+	    x += this.dimx;
+	  }
+	  if (this.HexArray[x] == undefined)
+	    return undefined;
 	  return this.HexArray[x][y];
 	}
 

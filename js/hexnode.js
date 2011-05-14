@@ -39,9 +39,9 @@ function HexNode(life, x, y)
 	  var sum = 0;
 	  for (var i=0; i<Neighbours.length; i++) {
 	    if 
-	      ((this.life.HexArray[this.x+Neighbours[i].x] != undefined) && 
-	      (this.life.HexArray[this.x+Neighbours[i].x][this.y+Neighbours[i].y] != undefined) &&
-	      (this.life.HexArray[this.x+Neighbours[i].x][this.y+Neighbours[i].y].val == 1))
+	      (
+	      (this.life.get(this.x+Neighbours[i].x,this.y+Neighbours[i].y) != undefined) &&
+	      (this.life.get(this.x+Neighbours[i].x,this.y+Neighbours[i].y).val == 1))
 	      sum += Neighbours[i].val;
 	  }
 

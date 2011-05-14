@@ -1,4 +1,6 @@
 window.addEvent("domready", function() {
+
+  
     var AudioletApp = new Class({
         initialize: function() {
             this.audiolet = new Audiolet();
@@ -10,5 +12,6 @@ window.addEvent("domready", function() {
     });
 
     this.audioletApp = new AudioletApp();
+    
 });
 

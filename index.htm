@@ -15,11 +15,158 @@
 
         <!-- Common -->
         <script src="js/audiolet_app.js"></script>
+<script type="application/javascript">
+
+
+    window.addEvent("domready", function() {
+      function NearNeighbour(x, y) {
+	this.val = 1.0;
+	this.x = x; 
+	this.y = y;
+      }
+
+      function FarNeighbour(x, y) {
+	this.val = 0.3;
+	this.x = x; 
+	this.y = y;
+      }
+      
+  
+      var Neighbours = new Array();
+      Neighbours.push(new NearNeighbour(-1, 1));
+      Neighbours.push(new NearNeighbour(0, 1));
+      Neighbours.push(new NearNeighbour(1, 0));
+      Neighbours.push(new NearNeighbour(1, -1));
+      Neighbours.push(new NearNeighbour(0, -1));
+      Neighbours.push(new NearNeighbour(-1, 0));
+
+      Neighbours.push(new FarNeighbour(-1, 2));
+      Neighbours.push(new FarNeighbour(1, 1));
+      Neighbours.push(new FarNeighbour(2, -1));
+      Neighbours.push(new FarNeighbour(1, -2));
+      Neighbours.push(new FarNeighbour(-1, -1));
+      Neighbours.push(new FarNeighbour(-2, 1));
+      
+
+      function HexNode(life, x, y)
+      {
+	this.life = life;
+	this.x = x;
+	this.y = y;
+	this.val = 0;
+	this.newval = 0;
+      
+	this.update = function() {
+	  var sum = 0;
+	  for (var i=0; i<Neighbours.length; i++) {
+	    if 
+	      ((this.life.HexArray[this.x+Neighbours[i].x] != undefined) && 
+	      (this.life.HexArray[this.x+Neighbours[i].x][this.y+Neighbours[i].y] != undefined) &&
+	      (this.life.HexArray[this.x+Neighbours[i].x][this.y+Neighbours[i].y].val == 1))
+	      sum += Neighbours[i].val;
+	  }
+
+	  console.log (sum);
+
+	  this.newval = this.val;
+
+	  if ((this.val == 1) && (sum < 2.0))
+	    this.newval = 0;
+	  if ((this.val == 1) && (sum > 3.3))
+	    this.newval = 0;
+
+	  if ((this.val == 0) && (sum >=2.3) && (sum <= 2.9))
+	    this.newval = 1;
+	}
+	this.swap = function () {
+	  this.val = this.newval;
+	}
+      }
+
+      function HexLife()
+      {
+	this.dimx = 7;
+	this.dimy = 7;
+	this.offx = 3;
+	this.offy = 3;
+
+	this.HexArray = new Array(this.dimx);
+	
+	for (var i=0; i< this.dimx; i++) {
+	  this.HexArray[i] = new Array(this.dimy);
+	  for (var j=0; j< this.dimy; j++) {
+	    this.HexArray[i][j] = new HexNode(this, i, j);
+	  }
+	}
+	
+	this.get = function(x ,y) {
+	  return this.HexArray[x+this.offx][y+this.offy];
+	}
+
+	this.coords = function(x, y) {
+	  var rval = new Object;
+
+	  rval.x = x + y/2;
+	  rval.y = y*0.8;
+
+	  return rval;
+	}
+
+	this.drawpoint = function(ctx, x, y) {
+	  ctx.beginPath();
+	  ctx.arc(x, y, 10, 0, Math.PI*2, true);
+	  ctx.closePath();
+	  ctx.fill();
+	}
+
+	this.seed = function() {
+	  this.HexArray[this.offx][this.offy].val = 1;
+	  this.HexArray[this.offx+1][this.offy].val = 1;
+	  this.HexArray[this.offx+2][this.offy].val = 1;
+	  this.HexArray[this.offx][this.offy+1].val = 1;
+	  this.HexArray[this.offx][this.offy+2].val = 1;
+	  this.HexArray[this.offx+1][this.offy+1].val = 1;
+	  return this;
+	}
+
+	this.update = function() {
+	  for (var i=0; i< this.dimx; i++) {
+	    for (var j=0; j< this.dimy; j++) {
+	      this.HexArray[i][j].update();
+	    }
+	  }
+	  for (var i=0; i< this.dimx; i++) {
+	    for (var j=0; j< this.dimy; j++) {
+	      this.HexArray[i][j].swap();
+	    }
+	  }
+	  return this;
+	}
+
+	this.redraw = function(ctx) {
+	  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+	  for (var x=0; x < this.dimx; x++) {
+	    for (var y=0; y < this.dimy; y++) {
+	      var coords = this.coords(x, y);
+	      if (this.HexArray[x][y].val == 1)
+		this.drawpoint(ctx, coords.x * 20, coords.y * 20);
+	    }
+	  }
+	}
+      }
+
+      var canvas = document.getElementById("hexcanvas");
+      var ctx = canvas.getContext("2d");
+
+
+      document.hl = new HexLife();
+    });
+</script>
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
-
-
+      <canvas id="hexcanvas" width="300" height="300"></canvas>
     </body>
 </html>
 

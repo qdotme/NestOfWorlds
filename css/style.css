@@ -34,17 +34,13 @@ header {
 header h1 {
     text-shadow: 1px 1px #BF0;
     font-size: 30px;
-    position: relative;
-    left: 150px;
-    top: 5px;
+    padding-left: 150px;
 }
 header h2 {
     color: #BF0;
     font-size: 20px;
-    position: relative;
-    left: 150px;
-    top: 5px;
     padding: 0;
+    padding-left: 150px;
 }
 header #logo {
     font-size: 14px;
@@ -144,7 +140,7 @@ button.inactive {
 #world {
     text-align: center;
     padding: 10px;
-    margin-left: 150px;
+    padding-left: 150px;
 }
 
 canvas {

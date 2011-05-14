@@ -74,10 +74,11 @@
 	  return rval;
 	}
 
-	this.drawpoint = function(ctx, x, y, rr) {
+	this.drawpoint = function(ctx, x, y, rr, cc) {
 	  this.ctx.beginPath();
 	  this.ctx.arc(x, y, rr, 0, Math.PI*2, true);
 	  this.ctx.closePath();
+	  this.ctx.fillStyle = cc;
 	  this.ctx.fill();
 	}
 
@@ -91,7 +92,9 @@
 	  life.foreach( function(hl, x, y) { 
 	      var coords = hv.coords(x, y);
 	      if (hl.HexArray[x][y].val == 1)
-		hv.drawpoint(hv.ctx, r+coords.x * 2*r, r+coords.y * 2*r, r);
+		hv.drawpoint(hv.ctx, r+coords.x * 2*r, r+coords.y * 2*r, r, '#FFF');
+	      else
+		hv.drawpoint(hv.ctx, r+coords.x * 2*r, r+coords.y * 2*r, r, '#111');
 	  });
 	}
 

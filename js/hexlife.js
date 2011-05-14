@@ -2,8 +2,8 @@
       {
 	this.dimx = 46;
 	this.dimy = Math.floor(this.dimx/2);
-	this.offx = Math.floor(this.dimx/2);
-	this.offy = Math.floor(this.dimy/2);
+	this.offx = Math.floor(this.dimx/4);
+	this.offy = Math.floor(this.dimy/4);
 
 	this.HexArray = new Array(this.dimx);
 	
@@ -35,7 +35,7 @@
 	  this.HexArray[this.offx+1][this.offy+1].audiofreq = 440;
 	  
 	}
-
+/*
 	this.seed = function() {
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
 	  this.HexArray[this.offx][this.offy].val = 1;
@@ -48,6 +48,17 @@
 	  // this.HexArray[this.offx+1][this.offy+1].audio.remove();
 //	  document.hs.ha.audiolet.output.disconnect(this.HexArray[this.offx+1][this.offy+1].audio);
 	  return this;
+	}
+*/
+
+	// glider
+	this.seed = function() {
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
+	  this.HexArray[this.offx+1][this.offy].val = 1;
+	  this.HexArray[this.offx][this.offy+1].val = 1;
+	  this.HexArray[this.offx-1][this.offy+1].val = 1;
+	  this.HexArray[this.offx-1][this.offy].val = 1;
+	  this.HexArray[this.offx+2][this.offy-1].val = 1;
 	}
 
 	this.update = function() {

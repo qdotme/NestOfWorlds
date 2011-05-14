@@ -26,7 +26,6 @@
       Neighbours.push(new FarNeighbour(-1, -1));
       Neighbours.push(new FarNeighbour(-2, 1));
 
-
 function HexNode(life, x, y)
       {
 	this.life = life;
@@ -56,17 +55,26 @@ function HexNode(life, x, y)
 
 	  if ((this.val == 0) && (sum >=2.3) && (sum <= 2.9))
 	    this.newval = 1;
+/*
+	  if ((this.val == 1) && (sum < 2.0))
+	    this.newval = 0;
+	  if ((this.val == 1) && (sum > 3.3))
+	    this.newval = 0;
+	  if ((this.val == 0) && (sum >=2.0) && (sum <= 3.1))
+	    this.newval = 1;	  
+*/	  
 	}
 	this.swap = function () {
 	  if (this.newval != this.val) {
 	    this.val = this.newval;	
  
-	    if ((this.audio != undefined) && (this.val == 0))
+	    if ((this.audio != undefined) && (this.val == 0)) {
 	      this.audio.remove();
 	      // document.hs.ha.audiolet.output.disconnect(this.audio);
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
+	    }
 	    if ((this.audiofreq != undefined) && (this.val == 1)) {
-	      this.audio = new Sine(document.hs.ha.audiolet, this.audiofreq);
+	      this.audio = new Synth(document.hs.ha.audiolet, this.audiofreq);
 	      this.audio.connect(document.hs.ha.audiolet.output);
 	    }
 

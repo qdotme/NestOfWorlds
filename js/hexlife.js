@@ -1,6 +1,6 @@
-      function HexLife()
+      function HexLife() 
       {
-	this.dimx = 46;
+	this.dimx = 34;
 	this.dimy = Math.floor(this.dimx/2);
 	this.offx = Math.floor(this.dimx/2);
 	this.offy = Math.floor(this.dimy/2);
@@ -42,30 +42,91 @@
 	}
 
 	this.sound = function() {
-	  this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = x*50+y; });
+	  // this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = 200 + Math.floor(Math.random()*2000); });
+//	  this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = 200 + 20*x + y });
+
+	  var octave2=[523.25, 587.33,  659.26,  783.99,  880];
+	  var octave3=[1046.5, 1174.66, 1318.51, 1567.98, 1760];
+	  // var octave2=[];
+	  // var octave3=[];
+
+	    var y=0; // this.offy;
+	    var x=0;
+	    
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = 261.63; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = 293.66; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = 329.63; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = 392; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = 440; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = 523.25; x++;
+	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
+	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	  
-	  this.HexArray[this.offx][this.offy+2].audiofreq = 880;
-	  this.HexArray[this.offx+1][this.offy+1].audiofreq = 440;
+	    
+	  for (var x=0; x<this.dimx; x++) {
+	    for (var y=1; y<this.dimy; y++) {
+	      this.HexArray[x][y].audiofreq = this.HexArray[x][y-1].audiofreq;
+	    }
+	  }
+	  
+	    
+	    
+
+	  /*
+	  this.HexArray[17][0].audiofreq = 261.63;
+	  this.HexArray[17][0].audiofreq
+	  */
+	  // this.HexArray[this.offx][this.offy+2].audiofreq = 880;
+	  // this.HexArray[this.offx+1][this.offy+1].audiofreq = 440;
 	  
 	}
-/*
+
 	this.seed = function() {
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
-	  this.HexArray[this.offx][this.offy].val = 1;
-	  this.HexArray[this.offx+1][this.offy].val = 1;
-	  this.HexArray[this.offx+2][this.offy].val = 1;
-	  this.HexArray[this.offx][this.offy+1].val = 1;
-	  this.HexArray[this.offx][this.offy+2].val = 1;
-	  this.HexArray[this.offx+1][this.offy+1].val = 1;
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
+	  this.HexArray[this.offx][this.offy].newval = 1;
+	  this.HexArray[this.offx+1][this.offy].newval = 1;
+	  this.HexArray[this.offx+2][this.offy].newval = 1;
+	  this.HexArray[this.offx][this.offy+1].newval = 1;
+	  this.HexArray[this.offx][this.offy+2].newval = 1;
+	  this.HexArray[this.offx+1][this.offy+1].newval = 1;
 	  
 	  // this.HexArray[this.offx+1][this.offy+1].audio.remove();
 //	  document.hs.ha.audiolet.output.disconnect(this.HexArray[this.offx+1][this.offy+1].audio);
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
 	  return this;
 	}
-*/
+
 
 	// glider
-	this.seed = function() {
+
+	this.glider = function() {
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
 	  this.HexArray[this.offx+1][this.offy].val = 1;
 	  this.HexArray[this.offx][this.offy+1].val = 1;
@@ -73,7 +134,12 @@
 	  this.HexArray[this.offx-1][this.offy].val = 1;
 	  this.HexArray[this.offx+2][this.offy-1].val = 1;
 	}
-
+	
+	this.seed = this.glider;
+	/*
+	this.seed = function() {
+	}
+	*/
 	this.update = function() {
 	  var count=0;
 	  this.foreach( function(hl, x, y) { count+=hl.HexArray[x][y].update() } );

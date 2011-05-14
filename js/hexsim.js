@@ -8,8 +8,10 @@
 
 	this.step = function() {
 	  this.hl.update();
-	  if (this.hl.count() == 0) 
+	  if (this.hl.count() == 0) {
 	    this.hl.seed();
+	    console.log("RESET");
+	  }
 	  this.hv.redraw(this.hl);
 	}
 
@@ -18,7 +20,7 @@
 	  this.step();
 	  var end = new Date().getTime();
 	  console.log("Execution time: " + (end-start));
-	  this.timer = setTimeout("document.hs.play()", 100);
+	  this.timer = setTimeout("document.hs.play()", 200);
 	}
 
 	this.stop = function () {

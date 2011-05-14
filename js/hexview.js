@@ -9,7 +9,7 @@
 	this.yx = Math.sqrt(3)/2;
 	
 	this.rcoords = function(x, y) {
-	  x -= 6*this.r;
+	  x -= 8*this.r;
 	  y -= this.r;
 	  x /= 2*this.r;
 	  y /= 2*this.r;

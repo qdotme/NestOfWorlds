@@ -14,12 +14,18 @@
         <script src="Audiolet/src/audiolet/Audiolet.js"></script>
 
         <!-- Common -->
+	<!-- Defining the node of the hex grid -->
         <script src="js/hexnode.js"></script>
+	<!-- Defining the view presentation layer -->
         <script src="js/hexview.js"></script>
+	<!-- Defining the world -->
 	<script src="js/hexlife.js"></script>
+	<!-- Audio stuff -->
         <script src="js/hexaudio.js"></script>
+	<!-- And in the darkness... bind! -->
         <script src="js/hexsim.js"></script>
-<script type="application/javascript">
+
+	<script type="application/javascript">
 
 
     window.addEvent("domready", function() {
@@ -35,6 +41,8 @@
 
 
       document.hs = new HexSim();
+      document.hs.hl.seed();
+      document.hs.play();
 
       document.hs.audio = new Sine(document.hs.ha.audiolet, 440);
       document.hs.audio.connect(document.hs.ha.audiolet.output);

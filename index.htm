@@ -66,7 +66,7 @@
 	      sum += Neighbours[i].val;
 	  }
 
-	  console.log (sum);
+//	  console.log (sum);
 
 	  this.newval = this.val;
 
@@ -85,20 +85,29 @@
 
       function HexLife()
       {
-	this.dimx = 7;
-	this.dimy = 7;
-	this.offx = 3;
-	this.offy = 3;
+	this.dimx = 45;
+	this.dimy = 45;
+	this.offx = 22;
+	this.offy = 22;
 
 	this.HexArray = new Array(this.dimx);
 	
+	
+
 	for (var i=0; i< this.dimx; i++) {
 	  this.HexArray[i] = new Array(this.dimy);
-	  for (var j=0; j< this.dimy; j++) {
-	    this.HexArray[i][j] = new HexNode(this, i, j);
+	}
+
+	this.foreach = function(what) {
+	  for (var i=0; i< this.dimx; i++) {
+	    for (var j=0; j< this.dimy; j++) {
+	      what(this, i, j);
+	    }
 	  }
 	}
-	
+
+	this.foreach( function(hl, x, y) { hl.HexArray[x][y] = new HexNode(hl, x, y) });
+
 	this.get = function(x ,y) {
 	  return this.HexArray[x+this.offx][y+this.offy];
 	}
@@ -120,6 +129,7 @@
 	}
 
 	this.seed = function() {
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
 	  this.HexArray[this.offx][this.offy].val = 1;
 	  this.HexArray[this.offx+1][this.offy].val = 1;
 	  this.HexArray[this.offx+2][this.offy].val = 1;
@@ -130,30 +140,38 @@
 	}
 
 	this.update = function() {
-	  for (var i=0; i< this.dimx; i++) {
-	    for (var j=0; j< this.dimy; j++) {
-	      this.HexArray[i][j].update();
-	    }
-	  }
-	  for (var i=0; i< this.dimx; i++) {
-	    for (var j=0; j< this.dimy; j++) {
-	      this.HexArray[i][j].swap();
-	    }
-	  }
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].update() } );
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
 	  return this;
+	}
+
+	this.step = function(ctx) {
+	  this.update();
+	  this.redraw(ctx);
 	}
 
 	this.redraw = function(ctx) {
 	  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-	  for (var x=0; x < this.dimx; x++) {
-	    for (var y=0; y < this.dimy; y++) {
-	      var coords = this.coords(x, y);
-	      if (this.HexArray[x][y].val == 1)
-		this.drawpoint(ctx, coords.x * 20, coords.y * 20);
-	    }
-	  }
+	  this.foreach( function(hl, x, y) { 
+	      var coords = hl.coords(x, y);
+	      if (hl.HexArray[x][y].val == 1)
+		hl.drawpoint(ctx, coords.x * 20, coords.y * 20);
+	  });
 	}
+
+	this.play = function (ctx) {
+	  var start = new Date().getTime();
+	  this.step(ctx);
+	  var end = new Date().getTime();
+	  console.log("Execution time: " + (end-start));
+	  this.timer = setTimeout("document.hl.play(document.getElementById('hexcanvas').getContext('2d'))", 1000);
+	}
+
+	this.stop = function () {
+	  clearTimeout(this.timer);
+	}
+
       }
 
       var canvas = document.getElementById("hexcanvas");
@@ -166,7 +184,12 @@
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
-      <canvas id="hexcanvas" width="300" height="300"></canvas>
+      <canvas id="hexcanvas" width="600" height="600"></canvas>
+      <a href="#" onClick="document.hl.seed()"> Seed </a>
+      <a href="#" onClick="document.hl.redraw(document.getElementById('hexcanvas').getContext('2d'))"> Redraw </a>
+      <a href="#" onClick="document.hl.step(document.getElementById('hexcanvas').getContext('2d'))"> Step </a>
+      <a href="#" onClick="document.hl.play(document.getElementById('hexcanvas').getContext('2d'))"> Play </a>
+      <a href="#" onClick="document.hl.stop()"> Pause </a>
     </body>
 </html>
 

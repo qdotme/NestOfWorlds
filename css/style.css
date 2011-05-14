@@ -1,0 +1,137 @@
+/** generic **/
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Orbitron-Bold'), url('http://themes.googleusercontent.com/font?kit=Y82YH_MJJWnsH2yUA5AuYZ0EAVxt0G0biEntp43Qt6E') format('truetype');
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Orbitron-Light'), local('Orbitron-Regular'), url('http://themes.googleusercontent.com/font?kit=lVErvynhvxLufD6jW6vDo_esZW2xOQ-xsNqO47m55DA') format('truetype');
+}
+
+body {
+    background: black -moz-linear-gradient(-90deg, #333, black) no-repeat;
+    background: black -webkit-linear-gradient(-90deg, #333, black) no-repeat;
+    background: black linear-gradient(-90deg, #333, black) no-repeat;
+    color: #ddd;
+    font-size: 28px;
+}
+
+/** the header **/
+
+header {
+    padding: 10px;
+    height: 84px;
+}
+
+header h1 {
+    font-size: 30px;
+}
+header p {
+    font-size: 20px;
+}
+header #logo {
+    font-size: 14px;
+    width: 64px;
+    height: 64px;
+    float: left;
+    border: 1px solid #bbff00;
+    padding: 10px;
+    margin-right: 16px;
+}
+
+/** main area **/
+
+#main {
+    border-top: 1px solid #bbff00;
+}
+
+/** menus - common elements **/
+
+button {
+    background: none;
+    border-top: none;
+    color: #eee;
+    width: 150px;
+    margin: 0;
+    border: none;
+    border-top: 1px solid #bbff00;
+    padding: 2px;
+}
+
+button.top-row {
+    border-top: none;
+}
+
+button:hover {
+    color: #bbff00;
+}
+
+button.inactive {
+    color: #777;
+}
+
+/** nav menu **/
+
+#nav-menu {
+    float: left;
+    width: 150px;
+    border: 1px solid #bbff00;
+    padding: 0;
+    border-bottom-right-radius: 10px;
+    border-top: 0;
+}
+
+#nav-menu button {
+}
+
+/** control panel **/
+
+#ctrl-panel {
+    float: right;
+    width: 300px;
+    border: 1px solid #bbff00;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 10px;
+}
+
+#ctrl-panel button {
+    float: right;
+    border-right: 1px solid #bbff00;
+}
+
+#ctrl-panel .small-buttons button {
+    font-size: 70%;
+    width: 100px;
+}
+
+#ctrl-panel .row {
+    display: block;
+    clear: both;
+}
+
+#ctrl-panel .row :first-child {
+    border-right: 0;
+}
+
+/** the world **/
+
+#world {
+    text-align: center;
+    padding: 10px;
+}
+
+canvas {
+  background:white;
+  border-bottom-left-radius:3em;
+  border-top-right-radius:3em;
+  border-right:solid 1em #BBFF00;
+  border-left:solid 1em #BBFF00;
+  margin: auto;
+}
+

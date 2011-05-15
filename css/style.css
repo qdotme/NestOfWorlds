@@ -22,6 +22,11 @@ body {
     text-align: center;
 }
 
+a, a:hover, a:visited {
+    color: #bf0;
+    text-decoration: none;
+}
+
 /** the header **/
 
 header {
@@ -157,7 +162,6 @@ canvas {
     display: none;
     width: 500px;
     position: absolute;
-    top: 100px;
     background: url(metal_bg.jpg);
     border: 5px solid #bf0;
     padding: 6px;
@@ -165,9 +169,11 @@ canvas {
     border-radius: 10px;
     margin: auto;
     text-align: left;
+    top: 200px;
+    left: 250px;
 }
 
-.popup {
-    top: 250px;
-    left: 250px;
+#popup-load-content {
+    height: 300px;
+    overflow: auto;
 }

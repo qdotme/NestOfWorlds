@@ -17,7 +17,7 @@ var Nav = {
 
     show_popup: function(name) {
         Nav.hide_popups()
-        $('.popup-' + name).css({display: 'block'});
+        $('#popup-' + name).css({display: 'block'});
     },
 
     handle_button: function(button) {
@@ -32,25 +32,79 @@ var Nav = {
         return Nav[id.replace(/-/g, '_')];
     },
 
-    bt_save: function(id) {
-        $('#popup-save').css({display: 'block'});
+    disabled_bt_save: function(id) {
+        Nav.show_popup('save');
         $('#popup-save-name').focus();
     },
 
     bt_save_cancel: function(id) {
-        Nav.show_popup('save');
+        Nav.hide_popups();
     },
 
     bt_save_submit: function(id) {
         $.post('/_js/world/add/', {name: $('#popup-save-name').val(),
-                                   content: 'TODO'},
+                                   content: document.hs.hl.as_json()},
                function() {
                    Nav.hide_popups();
                })
     },
 
+    disabled_bt_load: function(id) {
+        Nav.show_popup('load');
+        $('#popup-load-content').empty().html('<p>loading...</p>');
+        $.getJSON('/_js/world/list/', {},
+                  function (data) {
+                      console.log('loaded');
+                      var items = [];
+                      
+                      $.each(data['worlds'], function(idx, world) {
+                          items.push('<li id="world-' + world['id'] + '">'
+                                     + '<a class="load-world" href="#world-' + world['id'] + '">'
+                                     + world['name'] + ', '
+                                     + world['timestamp'] + '</a></li>');
+                          console.log(items[items.length - 1]);
+                      });
+                      
+                      $('#popup-load-content').empty();
+                      $('<ul/>', {
+                          html: (items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join('')
+                                 + items.join(''))
+                      }).appendTo('#popup-load-content');
+                      $("#popup-load-content .load-world").click(function(evt) {
+                          var id = evt.target.href.replace(/.*#world-/, '');
+                          document.hs.hl.jsonurl = '/_js/world/' + id + '/';
+                          console.log(document.hs.hl.jsonurl);
+                          document.hs.hl.json();
+                          Nav.hide_popups();
+                          return false;
+                      });
+                  });
+    },
+
+    bt_load_cancel: function(id) {
+        Nav.hide_popups();
+    },
+
+    bt_about: function() {
+        // ugly, but eventually it will fire up a popup instead
+        document.location = 'http://hackerspace.pl/wiki/doku.php?id=projects:music-of-life:nest_of_worlds';
+    },
+
+
 /*
-    bt_about: function() { Nav.popup('about') },
     bt_howto: function() { Nav.popup('howto') },
     bt_credits: function() { Nav.popup('credits') },
     bt_contact: function() { Nav.popup('contact') },

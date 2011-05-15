@@ -11,7 +11,7 @@ from django.utils import simplejson
 from models import World
 
 class SimpleTest(TestCase):
-    def test_save(self):
+    def test_save_and_load(self):
         World.objects.all().delete()
         resp = self.client.post(reverse('add_world'), data={'content': 'data',
                                                             'name': 'test world'})
@@ -22,6 +22,10 @@ class SimpleTest(TestCase):
         world = World.objects.get(id=data['id'])
         self.assertEqual(world.name, 'test world')
         self.assertEqual(world.content, 'data')
+
+        resp = self.client.post(reverse('get_world', kwargs={'id': world.id}))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content, 'data')
 
     def test_list(self):
         World.objects.all().delete()

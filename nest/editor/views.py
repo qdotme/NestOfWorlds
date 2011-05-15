@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.utils import simplejson
 from models import World
 
@@ -11,7 +11,6 @@ def home(request):
 
 def add_world(request):
     # TODO: validation
-    print request.POST
     world = World.objects.create(name=request.POST['name'],
                                  content=request.POST['content'])
     return json_response({'id': world.id})
@@ -21,3 +20,8 @@ def list_worlds(request):
     worlds = [{'id': w.id, 'name': w.name, 'timestamp': w.timestamp.isoformat()}
               for w in World.objects.order_by('-timestamp')]
     return json_response({'worlds': worlds})
+
+def get_world(request, id):
+    w = get_object_or_404(World, id=id)
+    return HttpResponse(w.content)
+

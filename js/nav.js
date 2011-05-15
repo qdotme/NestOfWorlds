@@ -51,6 +51,15 @@ var Nav = {
     bt_stop: function(id) {
         document.hs.stop();
     },
+    
+    bt_clear: function(id) {
+	document.hs.clear();
+    },
+    
+    bt_random: function(id) {
+	document.hs.hl.random();
+	document.hs.hv.redraw(document.hs.hl);
+    },
 
     popup: function(name) {
         $('popup-' + name).css({display: 'block'});

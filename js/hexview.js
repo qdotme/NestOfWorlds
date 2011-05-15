@@ -9,8 +9,8 @@
 	this.yx = Math.sqrt(3)/2;
 	
 	this.rcoords = function(x, y) {
-	  x -= 8*this.r;
-	  y -= this.r;
+	  x -= 2*this.r;
+	  y -= 2*this.r;
 	  x /= 2*this.r;
 	  y /= 2*this.r;
 
@@ -89,8 +89,13 @@
 	  var r = Math.min(this.ctx.canvas.width/(2*(life.dimx+0.5*life.dimy)), this.ctx.canvas.height/(2*life.dimy*this.yx));
 	  this.r = r;
 
+// 	  console.log("wtf?");
+	  
+// 	  console.log(life.HexArray[6][5]);
+	  
 	  life.foreach( function(hl, x, y) { 
 	      var coords = hv.coords(x, y);
+	      // console.log("x: " + x + ", y: " + y + ", val: " + hl.HexArray[x][y].val);
 	      if (hl.HexArray[x][y].val == 1)
 		hv.drawpoint(hv.ctx, r+coords.x * 2*r, r+coords.y * 2*r, r, '#FFF');
 	      else

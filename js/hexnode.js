@@ -70,6 +70,7 @@ function HexNode(life, x, y)
  
 	    if ((this.audio != undefined) && (this.val == 0)) {
 // 	      console.log("Removing");
+	      this.life.budget += this.audio.volume;
 	      this.audio.remove();
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
 	      // document.hs.ha.audiolet.output.disconnect(this.audio);
@@ -80,9 +81,15 @@ function HexNode(life, x, y)
 	       // && (this.life.trigger[this.audiofreq] == undefined)
 	       ) {
 	      // console.log("Triggering");
-	      this.life.trigger[this.audiofreq] = 1;
-	      this.audio = new Synth(document.hs.ha.audiolet, this.audiofreq);
-	      this.audio.connect(document.hs.ha.audiolet.output);
+	      var volume = this.life.budget * 0.2;
+	      if (volume > 0.01) {
+		this.life.budget -= volume;
+		
+		this.life.trigger[this.audiofreq] = 1;
+		
+		this.audio = new Synth(document.hs.ha.audiolet, this.audiofreq, volume);
+		this.audio.connect(document.hs.ha.audiolet.output);
+	      }
 	    }
 
 	  }

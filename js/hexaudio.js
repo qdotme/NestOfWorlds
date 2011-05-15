@@ -3,7 +3,7 @@
 
     var Synth = new Class({
         Extends: AudioletGroup,
-        initialize: function(audiolet, frequency) {
+        initialize: function(audiolet, frequency, volume) {
             AudioletGroup.prototype.initialize.apply(this, [audiolet, 0,
 1]);
             this.sine = new Sine(this.audiolet, frequency);
@@ -11,7 +11,9 @@
             this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2,
                                               frequency);
 
-            this.gain = new Gain(this.audiolet, 0.2);
+	    this.volume = volume;
+	    
+            this.gain = new Gain(this.audiolet, volume);
             this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2,
 0.5,
                 function() {

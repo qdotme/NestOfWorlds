@@ -11,6 +11,8 @@
 	
 	this.trigger = Object();
 
+	this.budget = 0.8;
+	
 	for (var i=0; i< this.dimx; i++) {
 	  this.HexArray[i] = new Array(this.dimy);
 	}

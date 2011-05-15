@@ -166,3 +166,8 @@ canvas {
     margin: auto;
     text-align: left;
 }
+
+.popup {
+    top: 250px;
+    left: 250px;
+}

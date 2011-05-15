@@ -6,11 +6,18 @@ var Nav = {
 
     dim_unimplemented_buttons: function() {
         $('button').each(function(idx, button) {
-            if (!Nav.get_handler(button.id)) {
-                console.log('no: ' + button.id);
+            if (!Nav.get_handler(button.id))
                 button.addClass('inactive');
-            }
         });
+    },
+
+    hide_popups: function() {
+        $('.popup').css({display: 'none'});
+    },
+
+    show_popup: function(name) {
+        Nav.hide_popups()
+        $('.popup-' + name).css({display: 'block'});
     },
 
     handle_button: function(button) {
@@ -22,13 +29,32 @@ var Nav = {
     },
 
     get_handler: function(id) {
-        return Nav[id.replace('-', '_')];
+        return Nav[id.replace(/-/g, '_')];
     },
 
+    bt_save: function(id) {
+        $('#popup-save').css({display: 'block'});
+        $('#popup-save-name').focus();
+    },
+
+    bt_save_cancel: function(id) {
+        Nav.show_popup('save');
+    },
+
+    bt_save_submit: function(id) {
+        $.post('/_js/world/add/', {name: $('#popup-save-name').val(),
+                                   content: 'TODO'},
+               function() {
+                   Nav.hide_popups();
+               })
+    },
+
+/*
     bt_about: function() { Nav.popup('about') },
     bt_howto: function() { Nav.popup('howto') },
     bt_credits: function() { Nav.popup('credits') },
     bt_contact: function() { Nav.popup('contact') },
+*/
 
     bt_seed: function(id) {
         document.hs.hl.seed();

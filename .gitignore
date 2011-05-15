@@ -1,1 +1,4 @@
 *~
+*.pyc
+*.db3
+local_settings.py

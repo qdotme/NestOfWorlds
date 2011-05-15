@@ -42,8 +42,9 @@ this.remove.bind(this));
 	
 	this.update = function(hl) {
 	  
+	  // console.log(hl.trigger);
 	  console.log(hl.trigger);
-	  console.log(hl.budget);
+	  console.log("Playing: " + hl.scount + "; " + "Budget: " + hl.budget);
 	  /*
 	    $.each(hl.trigger.keys, function(i, item) {
 	      console.log("item" + item);

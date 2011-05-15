@@ -13,6 +13,7 @@
 
 	this.startbudget = 0.5;
 	this.budget = this.startbudget;
+	this.scount = 0;
 	
 	for (var i=0; i< this.dimx; i++) {
 	  this.HexArray[i] = new Array(this.dimy);
@@ -130,10 +131,11 @@
 	this.sound = this.sound_model_randoctave;
 
 	this.clear = function() {
-	  this.budget = this.startbudget;
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
 	  this.swap();
+	  console.log("B: " + this.budget + "; C: " + this.scount);
 	  this.budget = this.startbudget;
+	  this.scount = 0;
 	}
 
 	this.coreseed = function() {
@@ -156,14 +158,16 @@
 
 	this.glider = function() {
 	  this.clear();
-	  this.HexArray[this.offx+1][this.offy].val = 1;
-	  this.HexArray[this.offx][this.offy+1].val = 1;
-	  this.HexArray[this.offx-1][this.offy+1].val = 1;
-	  this.HexArray[this.offx-1][this.offy].val = 1;
-	  this.HexArray[this.offx+2][this.offy-1].val = 1;
+	  this.HexArray[this.offx+1][this.offy].newval = 1;
+	  this.HexArray[this.offx][this.offy+1].newval = 1;
+	  this.HexArray[this.offx-1][this.offy+1].newval = 1;
+	  this.HexArray[this.offx-1][this.offy].newval = 1;
+	  this.HexArray[this.offx+2][this.offy-1].newval = 1;
+	  this.swap();
 	}
 	
 	this.random = function () {
+	  this.clear();
 	  this.foreach( function(hl, x, y) 
 	    { hl.HexArray[x][y].newval = Math.floor(Math.random()*2); });
 	  this.swap();
@@ -176,16 +180,20 @@
 	this.json = function() {
 // 	  console.log("Fetching JSON, " + self.jsonurl);
 	  self.clear();
+	  $.ajaxSetup( { "async": false } );
+	      // For now..
 	  $.getJSON(self.jsonurl, function(json) {
 // 	    console.log("JSON: " + json);
 	    $.each(json, function(i, item){
 	      
 	      self.HexArray[item.x][item.y].x = item.x;
 	      self.HexArray[item.x][item.y].y = item.y;
-	      self.HexArray[item.x][item.y].val = item.val;
+	      // self.HexArray[item.x][item.y].val = item.val;
 	      self.HexArray[item.x][item.y].newval = item.val;
 // 	      console.log(self.HexArray[item.x][item.y]);
 	    });
+	    
+	    self.swap();
 	    
 	    document.hs.hv.redraw(document.hs.hl);
 	  });
@@ -198,8 +206,11 @@
 	*/
 	
 	this.swap = function() {
+
+	  console.log("Pre -Swap: B: " + this.budget + ", S: " + this.scount + ", C: " + Object.keys(this.trigger).length);
 	  this.trigger = Object();
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
+	  console.log("Post-Swap: B: " + this.budget + ", S: " + this.scount + ", C: " + Object.keys(this.trigger).length);
 	}
 	
 	this.update = function() {

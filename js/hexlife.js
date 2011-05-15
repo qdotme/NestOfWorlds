@@ -43,16 +43,29 @@
 	  return count;
 	}
 
-	this.octaves = [261.63, 293.66, 329.63, 392, 440, 523.25, 587.33,  659.26,  783.99,  880, 1046.5, 1174.66, 1318.51, 1567.98, 1760]
+	this.octave0 = [130.81,  146.83,  164.81,  192,     220 ];
+	this.octave1 = [261.63,  293.66,  329.63,  392,     440 ];
+	this.octave2 = [523.25,  587.33,  659.26,  784,     880 ];
+	this.octave3 = [1046.5,  1174.66, 1318.51, 1567.98, 1760];
 
-	this.sound = function() {
+	this.octaves = this.octave0.concat(
+		       this.octave1.concat(
+		       this.octave2 ));
+	
+	this.sound_model_randoctave = function () {
+	  self.foreach ( function(hl, x, y) 
+	    { hl.HexArray[x][y].audiofreq = 
+		self.octaves[Math.floor(Math.random() * self.octaves.length)] } )
+	};
+		
+	
+	this.sound_model_sat = function() {
 	  // this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = 200 + Math.floor(Math.random()*2000); });
 //	  this.foreach ( function(hl, x, y) { hl.HexArray[x][y].audiofreq = 200 + 20*x + y });
 
-	  var octave2=[523.25, 587.33,  659.26,  783.99,  880];
-	  var octave3=[1046.5, 1174.66, 1318.51, 1567.98, 1760];
-	  // var octave2=[];
-	  // var octave3=[];
+	    var octave1=this.octave0;
+	    var octave2=this.octave1;
+	    var octave3=this.octave2;
 
 	    var y=0; // this.offy;
 	    var x=0;
@@ -61,33 +74,33 @@
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
-	    this.HexArray[x][y].audiofreq = 261.63; x++;
+	    this.HexArray[x][y].audiofreq = octave1[0]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
-	    this.HexArray[x][y].audiofreq = 293.66; x++;
+	    this.HexArray[x][y].audiofreq = octave1[1]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
-	    this.HexArray[x][y].audiofreq = 329.63; x++;
+	    this.HexArray[x][y].audiofreq = octave1[2]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
-	    this.HexArray[x][y].audiofreq = 392; x++;
+	    this.HexArray[x][y].audiofreq = octave1[3]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
-	    this.HexArray[x][y].audiofreq = 440; x++;
+	    this.HexArray[x][y].audiofreq = octave1[4]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
-	    this.HexArray[x][y].audiofreq = 523.25; x++;
+	    this.HexArray[x][y].audiofreq = octave2[0]; x++;
 	    this.HexArray[x][y].audiofreq = octave2[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
 	    this.HexArray[x][y].audiofreq = octave3[Math.floor(Math.random() * 5)]; x++;
@@ -110,6 +123,8 @@
 	  // this.HexArray[this.offx+1][this.offy+1].audiofreq = 440;
 	  
 	}
+	
+	this.sound = this.sound_model_randoctave;
 
 	this.clear = function() {
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
@@ -149,7 +164,7 @@
 	  this.swap();
 	}
 	
-	this.jsonurl = "foo.json";
+	this.jsonurl = "repo/glider.json";
 	
 	
 	

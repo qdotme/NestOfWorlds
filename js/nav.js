@@ -32,6 +32,7 @@ var Nav = {
 
     bt_seed: function(id) {
         document.hs.hl.seed();
+	document.hs.hv.redraw(document.hs.hl);
     },
 
     bt_redraw: function(id) {
@@ -48,6 +49,10 @@ var Nav = {
 
     bt_stop: function(id) {
         document.hs.stop();
+    },
+    
+    bt_clear: function(id) {
+	document.hs.clear();
     },
 
     popup: function(name) {

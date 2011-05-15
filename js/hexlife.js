@@ -9,7 +9,7 @@
 
 	this.HexArray = new Array(this.dimx);
 	
-	this.trigger = new Array();
+	this.trigger = Object();
 
 	for (var i=0; i< this.dimx; i++) {
 	  this.HexArray[i] = new Array(this.dimy);
@@ -111,9 +111,13 @@
 	  
 	}
 
-	this.coreseed = function() {
+	this.clear = function() {
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
+	}
+
+	this.coreseed = function() {
+	  this.clear();
 	  this.HexArray[this.offx][this.offy].newval = 1;
 	  this.HexArray[this.offx+1][this.offy].newval = 1;
 	  this.HexArray[this.offx+2][this.offy].newval = 1;
@@ -131,7 +135,7 @@
 	// glider
 
 	this.glider = function() {
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
+	  this.clear();
 	  this.HexArray[this.offx+1][this.offy].val = 1;
 	  this.HexArray[this.offx][this.offy+1].val = 1;
 	  this.HexArray[this.offx-1][this.offy+1].val = 1;
@@ -141,8 +145,10 @@
 	
 	this.jsonurl = "foo.json";
 	
+	
+	
 	this.json = function() {
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
+	  this.clear();
 	  $.getJSON(self.jsonurl, function(json) {
 	    $.each(json, function(i, item){
 	      self.HexArray[item.x][item.y].x = item.x;
@@ -160,7 +166,7 @@
 	this.update = function() {
 	  var count=0;
 	  this.foreach( function(hl, x, y) { count+=hl.HexArray[x][y].update() } );
-	  this.trigger = Array();
+	  this.trigger = Object();
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
 	  return this;
 	}

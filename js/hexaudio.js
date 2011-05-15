@@ -35,4 +35,15 @@ this.remove.bind(this));
       function HexAudio() 
       {
 	this.audiolet = new Audiolet(22050);
+
+
+	
+	this.update = function(hl) {
+	  /*
+	  console.log(hl.trigger);
+	    $.each(hl.trigger.keys, function(i, item) {
+	      console.log("item" + item);
+	    }); 
+	  */
+	}	
       }

@@ -1,7 +1,6 @@
       function HexSim()
       {
 	this.ha = new HexAudio();
-
 	this.hv = new HexView();
 	this.hl = new HexLife();
 
@@ -12,6 +11,7 @@
 	    this.hl.seed();
 	    console.log("RESET");
 	  }
+	  this.ha.update(this.hl);
 	  this.hv.redraw(this.hl);
 	}
 
@@ -26,4 +26,11 @@
 	this.stop = function () {
 	  clearTimeout(this.timer);
 	}
+
+	this.clear = function() {
+	  this.stop();
+	  this.hl.clear();
+	  this.hv.redraw(this.hl);
+	}	
+	
       }

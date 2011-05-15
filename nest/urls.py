@@ -5,10 +5,7 @@ from django.conf.urls.defaults import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'nest.views.home', name='home'),
-    # url(r'^nest/', include('nest.foo.urls')),
-
+    url(r'', include('nest.editor.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

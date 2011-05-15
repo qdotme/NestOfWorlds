@@ -11,7 +11,8 @@
         <!-- Development -->
         <script type="text/javascript" src="{{ STATIC_URL }}Audiolet/src/mootools/mootools-core-1.3-full-nocompat.js"></script>
         <script src="{{ STATIC_URL }}Audiolet/src/audiolet/Audiolet.js"></script>
-        
+        <script src="{{ STATIC_URL }}json2.js"></script>
+
         <!-- jquery, off of google's CDN -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
 
@@ -45,6 +46,8 @@
 
 
       document.hs = new HexSim();
+      document.hs.hl.jsonurl = "{{ STATIC_URL }}foo.json";
+
       document.hs.hl.sound();
       // document.hs.hl.seed();
       document.hs.play();

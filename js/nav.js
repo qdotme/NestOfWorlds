@@ -6,7 +6,7 @@ var Nav = {
 
     dim_unimplemented_buttons: function() {
         $('button').each(function(idx, button) {
-            if (!Nav.get_handler(button.id))
+            if (button.id && !Nav.get_handler(button.id))
                 button.addClass('inactive');
         });
     },
@@ -22,10 +22,13 @@ var Nav = {
 
     handle_button: function(button) {
         var handler = Nav.get_handler(button.id);
-        if (handler) {
-            handler();
-        } else
-            alert(button.id + ': not implemented yet');
+        console.log("id: " + button.id);
+        if (button.id) {
+            if (handler) {
+                handler();
+            } else
+                alert(button.id + ': not implemented yet');
+        }
     },
 
     get_handler: function(id) {
@@ -98,17 +101,10 @@ var Nav = {
         Nav.hide_popups();
     },
 
-    bt_about: function() {
-        // ugly, but eventually it will fire up a popup instead
-        document.location = 'http://hackerspace.pl/wiki/doku.php?id=projects:music-of-life:nest_of_worlds';
-    },
-
-
-/*
-    bt_howto: function() { Nav.popup('howto') },
-    bt_credits: function() { Nav.popup('credits') },
-    bt_contact: function() { Nav.popup('contact') },
-*/
+    bt_about: function() { Nav.show_popup('about'); },
+    bt_howto: function() { Nav.show_popup('howto') },
+    bt_credits: function() { Nav.show_popup('credits') },
+/*    bt_contact: function() { Nav.show_popup('contact') },*/
 
     bt_seed: function(id) {
         document.hs.hl.seed();

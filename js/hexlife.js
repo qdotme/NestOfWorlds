@@ -148,13 +148,20 @@
 	
 	
 	this.json = function() {
-	  this.clear();
+// 	  console.log("Fetching JSON, " + self.jsonurl);
+	  self.clear();
 	  $.getJSON(self.jsonurl, function(json) {
+// 	    console.log("JSON: " + json);
 	    $.each(json, function(i, item){
+	      
 	      self.HexArray[item.x][item.y].x = item.x;
 	      self.HexArray[item.x][item.y].y = item.y;
 	      self.HexArray[item.x][item.y].val = item.val;
+	      self.HexArray[item.x][item.y].newval = item.val;
+// 	      console.log(self.HexArray[item.x][item.y]);
 	    });
+	    
+	    document.hs.hv.redraw(document.hs.hl);
 	  });
 	}
 	

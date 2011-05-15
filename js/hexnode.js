@@ -69,7 +69,7 @@ function HexNode(life, x, y)
 	    this.val = this.newval;	
  
 	    if ((this.audio != undefined) && (this.val == 0)) {
-	      console.log("Removing");
+// 	      console.log("Removing");
 	      this.audio.remove();
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
 	      // document.hs.ha.audiolet.output.disconnect(this.audio);

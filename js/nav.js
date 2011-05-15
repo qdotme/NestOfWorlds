@@ -98,8 +98,13 @@ var Nav = {
         Nav.hide_popups();
     },
 
+    bt_about: function() {
+        // ugly, but eventually it will fire up a popup instead
+        document.location = 'http://hackerspace.pl/wiki/doku.php?id=projects:music-of-life:nest_of_worlds';
+    },
+
+
 /*
-    bt_about: function() { Nav.popup('about') },
     bt_howto: function() { Nav.popup('howto') },
     bt_credits: function() { Nav.popup('credits') },
     bt_contact: function() { Nav.popup('contact') },

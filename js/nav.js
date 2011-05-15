@@ -102,8 +102,8 @@ var Nav = {
     },
 
     bt_about: function() { Nav.show_popup('about'); },
-    bt_howto: function() { Nav.show_popup('howto') },
-    bt_credits: function() { Nav.show_popup('credits') },
+    bt_howto: function() { Nav.show_popup('howto'); },
+    bt_credits: function() { Nav.show_popup('credits'); },
 /*    bt_contact: function() { Nav.show_popup('contact') },*/
 
     bt_seed: function(id) {

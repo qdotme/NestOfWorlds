@@ -1,3 +1,6 @@
 [submodule "Audiolet"]
 	path = Audiolet
 	url = https://github.com/oampo/Audiolet.git
+[submodule "django"]
+	path = django
+	url = https://github.com/django/django.git

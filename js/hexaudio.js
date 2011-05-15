@@ -11,7 +11,7 @@
             this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2,
                                               frequency);
 
-            this.gain = new Gain(this.audiolet);
+            this.gain = new Gain(this.audiolet, 0.2);
             this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2,
 0.5,
                 function() {
@@ -24,7 +24,7 @@ this.remove.bind(this));
             this.modulator.connect(this.modulatorMulAdd);
             this.modulatorMulAdd.connect(this.sine);
 
-            this.envelope.connect(this.gain, 0, 1);
+//            this.envelope.connect(this.gain, 0, 1);
             this.sine.connect(this.gain);
 
             this.gain.connect(this.outputs[0]);

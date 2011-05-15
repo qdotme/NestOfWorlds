@@ -11,7 +11,8 @@
 	
 	this.trigger = Object();
 
-	this.budget = 0.5;
+	this.startbudget = 0.5;
+	this.budget = this.startbudget;
 	
 	for (var i=0; i< this.dimx; i++) {
 	  this.HexArray[i] = new Array(this.dimy);
@@ -129,6 +130,7 @@
 	this.sound = this.sound_model_randoctave;
 
 	this.clear = function() {
+	  this.budget = this.startbudget;
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
 	  this.swap();
 	}
@@ -207,7 +209,21 @@
 	}
 
     this.save = function() {
-        JSON.stringify(hl.HexArray);
+	var savearray= new Array;
+	var i = 0;
+	
+	this.foreach ( function (hl, x, y) 
+	  { 
+	    if (hl.HexArray[x][y].val == 1) {
+	      savearray[i] = new Object;
+	      savearray[i].x = hl.HexArray[x][y].x;
+	      savearray[i].y = hl.HexArray[x][y].y;
+	      savearray[i].val = hl.HexArray[x][y].val;
+	      i++;
+	    }
+	  } );
+	    
+        return JSON.stringify(savearray);
     }
 
 

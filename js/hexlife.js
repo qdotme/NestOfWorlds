@@ -133,6 +133,7 @@
 	  this.budget = this.startbudget;
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
 	  this.swap();
+	  this.budget = this.startbudget;
 	}
 
 	this.coreseed = function() {

@@ -71,6 +71,8 @@ function HexNode(life, x, y)
 	    if ((this.audio != undefined) && (this.val == 0)) {
 // 	      console.log("Removing");
 	      this.life.budget += this.audio.volume;
+	      if (this.life.budget > this.life.startbudget) 
+		this.life.budget = this.life.startbudget;
 	      this.audio.remove();
 	      // this.audio.disconnect(document.hs.ha.audiolet.output);
 	      // document.hs.ha.audiolet.output.disconnect(this.audio);

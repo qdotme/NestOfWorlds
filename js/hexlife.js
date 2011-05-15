@@ -112,8 +112,8 @@
 	}
 
 	this.clear = function() {
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].val = 0 } );
 	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].newval = 0 } );
+	  this.swap();
 	}
 
 	this.coreseed = function() {
@@ -143,6 +143,12 @@
 	  this.HexArray[this.offx+2][this.offy-1].val = 1;
 	}
 	
+	this.random = function () {
+	  this.foreach( function(hl, x, y) 
+	    { hl.HexArray[x][y].newval = Math.floor(Math.random()*2); });
+	  this.swap();
+	}
+	
 	this.jsonurl = "foo.json";
 	
 	
@@ -170,11 +176,16 @@
 	this.seed = function() {
 	}
 	*/
+	
+	this.swap = function() {
+	  this.trigger = Object();
+	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
+	}
+	
 	this.update = function() {
 	  var count=0;
 	  this.foreach( function(hl, x, y) { count+=hl.HexArray[x][y].update() } );
-	  this.trigger = Object();
-	  this.foreach( function(hl, x, y) { hl.HexArray[x][y].swap() } );
+	  this.swap();
 	  return this;
 	}
 

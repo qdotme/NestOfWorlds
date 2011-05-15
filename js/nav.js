@@ -56,6 +56,7 @@ var Nav = {
     
     bt_random: function(id) {
 	document.hs.hl.random();
+	document.hs.hv.redraw(document.hs.hl);
     },
 
     popup: function(name) {

@@ -208,7 +208,7 @@
 	  return this;
 	}
 
-    this.save = function() {
+    this.as_json = function() {
 	var savearray= new Array;
 	var i = 0;
 	

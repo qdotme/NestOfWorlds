@@ -35,7 +35,7 @@
 
     window.addEvent("domready", function() {
       document.hs = new HexSim();
-      document.hs.hl.jsonurl = "{{ STATIC_URL }}foo.json";
+      document.hs.hl.jsonurl = "{{ STATIC_URL }}repo/glider.json";
 
       document.hs.hl.sound();
       // document.hs.hl.seed();
@@ -97,6 +97,15 @@
                 <button id="bt-save-cancel">Cancel</button>
                 <button id="bt-save-submit">Save</button>
               </div>
+            </div>
+          
+            <div id="popup-load" class="popup">
+              <h2>Load</h2>
+
+              <div id="popup-load-content">
+              </div>
+
+              <button id="bt-load-cancel">Cancel</button>
             </div>
           
           </div>

@@ -43,6 +43,7 @@ this.remove.bind(this));
 	this.update = function(hl) {
 	  
 	  console.log(hl.trigger);
+	  console.log(hl.budget);
 	  /*
 	    $.each(hl.trigger.keys, function(i, item) {
 	      console.log("item" + item);

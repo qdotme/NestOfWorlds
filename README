@@ -1,3 +1,11 @@
 1) git clone 'url'
 2) git submodule init
 3) git submodule update
+
+To update now.hackerspace.pl:
+
+1. ssh to hackerspace.pl
+2. sudo to user now
+3. go to /var/git/NestOfWorlds/nest
+4. git pull
+5. ./restart.sh

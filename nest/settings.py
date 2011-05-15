@@ -142,9 +142,12 @@ LOGGING = {
     }
 }
 
+URL_PREFIX = ''
+
 try:
     from local_settings import *
 except ImportError:
     print "No local_settings.py file."
     print "Copy the local_settings.py.template to local_settings.py and configure it."
     sys.exit(1)
+

@@ -11,6 +11,7 @@ def home(request):
 
 def add_world(request):
     # TODO: validation
+    print request.POST
     world = World.objects.create(name=request.POST['name'],
                                  content=request.POST['content'])
     return json_response({'id': world.id})

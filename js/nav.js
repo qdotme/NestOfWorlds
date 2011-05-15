@@ -32,7 +32,7 @@ var Nav = {
         return Nav[id.replace(/-/g, '_')];
     },
 
-    bt_save: function(id) {
+    disabled_bt_save: function(id) {
         Nav.show_popup('save');
         $('#popup-save-name').focus();
     },
@@ -49,7 +49,7 @@ var Nav = {
                })
     },
 
-    bt_load: function(id) {
+    disabled_bt_load: function(id) {
         Nav.show_popup('load');
         $('#popup-load-content').empty().html('<p>loading...</p>');
         $.getJSON('/_js/world/list/', {},

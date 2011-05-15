@@ -142,8 +142,6 @@ LOGGING = {
     }
 }
 
-URL_PREFIX = ''
-
 try:
     from local_settings import *
 except ImportError:

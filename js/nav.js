@@ -25,10 +25,12 @@ var Nav = {
         return Nav[id.replace('-', '_')];
     },
 
+/*
     bt_about: function() { Nav.popup('about') },
     bt_howto: function() { Nav.popup('howto') },
     bt_credits: function() { Nav.popup('credits') },
     bt_contact: function() { Nav.popup('contact') },
+*/
 
     bt_seed: function(id) {
         document.hs.hl.seed();

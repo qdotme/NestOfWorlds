@@ -171,6 +171,10 @@
 	  return this;
 	}
 
+    this.save = function() {
+        JSON.stringify(hl.HexArray);
+    }
+
 
 
       }
